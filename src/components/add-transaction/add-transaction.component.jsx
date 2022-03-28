@@ -16,7 +16,7 @@ const AddTransaction = () => {
       <Title>Add Transaction</Title>
       <SubTitle>Voice completion</SubTitle>
       <ExampleText>
-        Add [Expenses/Income] for $[amount] for next [date]
+        Add [Expenses/Income] for $[amount] in [Category] for next [date]
       </ExampleText>
       <AddFormContainer>
         <VoiceInput>

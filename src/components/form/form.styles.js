@@ -7,4 +7,9 @@ export default makeStyles(() => ({
   gridItem: {
     marginTop: '15px',
   },
+  datepicker: {
+    '&::-webkit-calendar-picker-indicator': {
+      filter: 'invert(1)',
+    },
+  },
 }));
