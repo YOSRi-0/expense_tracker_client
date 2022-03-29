@@ -11,9 +11,14 @@ import TransactionActionTypes from './transaction.types';
 // fetch Transactions
 export function* fetchTransactionsAsync({ payload: { currentUser } }) {
   try {
-    const transactions = yield transactionService.getMany(currentUser);
+    const transactionsMap = yield transactionService.getMany(currentUser);
+    const transactions = transactionsMap.data.map((transaction) => {
+      if (transaction.list === currentUser.types.expenseId) {
+        return { ...transaction, type: 'expense' };
+      }
+      return { ...transaction, type: 'income' };
+    });
     yield put(fetchTransactionSuccess(transactions));
-    yield fetchTransactionsAsync();
   } catch (error) {
     yield put(fetchTransactionFailure(error.message));
   }
