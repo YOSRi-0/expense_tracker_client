@@ -5,11 +5,24 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { SpeechProvider } from '@speechly/react-client';
+import { persistor, store } from './redux/store';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
-  <SpeechProvider appId="fa1681d6-1503-42d7-9871-c2bed46cc7c0" language="en-us">
-    <App />
-  </SpeechProvider>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <PersistGate persistor={persistor}>
+        <SpeechProvider
+          appId="fa1681d6-1503-42d7-9871-c2bed46cc7c0"
+          language="en-us"
+        >
+          <App />
+        </SpeechProvider>
+      </PersistGate>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 // If you want your app to work offline and load faster, you can change

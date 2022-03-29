@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import {
   HeaderContainer,
   InfoText,
@@ -10,16 +12,21 @@ import {
 } from './header.styles';
 
 const Header = () => {
+  const currentUser = useSelector(selectCurrentUser);
+
   return (
     <HeaderContainer>
-      {/* <LoginButton to="/login">Login</LoginButton> */}
-      <ProfileContainer>
-        <ProfilePicture />
-        <InfoText>
-          <WelcomeMsg>Welcome Back,</WelcomeMsg>
-          <ProfileName>Yosri</ProfileName>
-        </InfoText>
-      </ProfileContainer>
+      {currentUser ? (
+        <ProfileContainer>
+          <ProfilePicture />
+          <InfoText>
+            <WelcomeMsg>Welcome Back,</WelcomeMsg>
+            <ProfileName>Yosri</ProfileName>
+          </InfoText>
+        </ProfileContainer>
+      ) : (
+        <LoginButton to="/login">Login</LoginButton>
+      )}
     </HeaderContainer>
   );
 };
