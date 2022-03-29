@@ -19,6 +19,12 @@ import {
   incomeCategories,
 } from '../../constants/categories';
 import { useSpeechContext } from '@speechly/react-client';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addTransactionStart,
+  fetchTransactionStart,
+} from '../../redux/transaction/transaction.actions';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 const initialState = {
   amount: '',
@@ -37,12 +43,30 @@ const Form = () => {
     },
   });
   const { segment } = useSpeechContext();
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
 
   const createTransaction = () => {
     if (Number.isNaN(Number(formData.amount)) || !formData.date.includes('-'))
       return;
+    if (!isValidForm()) {
+      return;
+    }
 
-    console.log('formdata', formData);
+    dispatch(
+      addTransactionStart(
+        {
+          name: formData.category,
+          list:
+            formData.type === 'expense'
+              ? currentUser.types.expenseId
+              : currentUser.types.incomeId,
+          amount: Number(formData.amount),
+          date: formData.date,
+        },
+        currentUser
+      )
+    );
     setFormData(initialState);
     setOpen(true);
   };
@@ -50,18 +74,17 @@ const Form = () => {
   const selectedCategories =
     formData.type === 'income' ? incomeCategories : expenseCategories;
 
+  const isValidForm = () => {
+    return (
+      formData.amount &&
+      formData.category &&
+      formData.type &&
+      formData.date &&
+      true
+    );
+  };
   useEffect(() => {
     console.log(segment);
-    const isValidForm = () => {
-      return (
-        segment.isFinal &&
-        formData.amount &&
-        formData.category &&
-        formData.type &&
-        formData.date &&
-        true
-      );
-    };
     if (segment) {
       if (segment.intent.intent === 'add_expense') {
         setFormData({ ...formData, type: 'expense' });
@@ -108,7 +131,7 @@ const Form = () => {
       });
 
       console.log(isValidForm());
-      isValidForm() && createTransaction();
+      segment.isFinal && isValidForm() && createTransaction();
     }
   }, [segment]);
 

@@ -73,7 +73,7 @@ export const LastTransactions = styled.div`
   width: 100%;
   min-height: 100%;
   padding: 26px 38px;
-  overflow: auto;
+  overflow: scroll;
 `;
 
 export const LastTransactionsHeader = styled.div`

@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTransactionStart } from '../../redux/transaction/transaction.actions';
+import { selectTransactionsData } from '../../redux/transaction/transaction.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import formatDate from '../../utils/formatDate';
 import {
   Currency,
   HeaderText,
@@ -22,6 +27,14 @@ import {
 } from './transactions.styles';
 
 const Transactions = () => {
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const transactions = useSelector(selectTransactionsData);
+
+  useEffect(() => {
+    dispatch(fetchTransactionStart(currentUser));
+  }, [dispatch, currentUser]);
+
   return (
     <TransactionsContainer>
       <Title>Total Balance</Title>
@@ -44,46 +57,29 @@ const Transactions = () => {
           <HeaderText>Last Transactions</HeaderText>
           <HeaderText>See all</HeaderText>
         </LastTransactionsHeader>
-        <Transaction>
-          <Left>
-            <TransactionIcon type="expense" />
-            <TransactionInfo>
-              <TransactionCategory>Cars</TransactionCategory>
-              <TransactionDate>22 Mars 22</TransactionDate>
-            </TransactionInfo>
-          </Left>
-          <TransactionAmount type="expense">- 2000</TransactionAmount>
-        </Transaction>
-        <Transaction>
-          <Left>
-            <TransactionIcon />
-            <TransactionInfo>
-              <TransactionCategory>Freelance</TransactionCategory>
-              <TransactionDate>22 Mars 22</TransactionDate>
-            </TransactionInfo>
-          </Left>
-          <TransactionAmount type="income">+ 5000</TransactionAmount>
-        </Transaction>
-        <Transaction>
-          <Left>
-            <TransactionIcon type="expense" />
-            <TransactionInfo>
-              <TransactionCategory>Cars</TransactionCategory>
-              <TransactionDate>22 Mars 22</TransactionDate>
-            </TransactionInfo>
-          </Left>
-          <TransactionAmount type="expense">- 2000</TransactionAmount>
-        </Transaction>
-        <Transaction>
-          <Left>
-            <TransactionIcon />
-            <TransactionInfo>
-              <TransactionCategory>Freelance</TransactionCategory>
-              <TransactionDate>22 Mars 22</TransactionDate>
-            </TransactionInfo>
-          </Left>
-          <TransactionAmount type="income">+ 5000</TransactionAmount>
-        </Transaction>
+        {transactions.map((transaction) => {
+          const type =
+            transaction.list === currentUser.types.expenseId
+              ? 'expense'
+              : 'income';
+          return (
+            <Transaction key={transaction._id}>
+              <Left>
+                <TransactionIcon type={type} />
+                <TransactionInfo>
+                  <TransactionCategory>{transaction.name}</TransactionCategory>
+                  <TransactionDate>
+                    {formatDate(transaction.date)}
+                  </TransactionDate>
+                </TransactionInfo>
+              </Left>
+              <TransactionAmount type={type}>
+                {type === 'expense' ? '- ' : '+ '}
+                {transaction.amount}
+              </TransactionAmount>
+            </Transaction>
+          );
+        })}
       </LastTransactions>
     </TransactionsContainer>
   );
