@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactionStart } from '../../redux/transaction/transaction.actions';
-import { selectTransactionsData } from '../../redux/transaction/transaction.selectors';
+import {
+  selectTransactionsData,
+  selectTransactionsPreview,
+} from '../../redux/transaction/transaction.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import formatDate from '../../utils/formatDate';
 import {
@@ -29,7 +32,7 @@ import {
 const Transactions = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  const transactions = useSelector(selectTransactionsData);
+  const transactions = useSelector(selectTransactionsPreview);
 
   useEffect(() => {
     dispatch(fetchTransactionStart(currentUser));
