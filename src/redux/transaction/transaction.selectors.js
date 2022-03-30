@@ -18,7 +18,6 @@ export const selectIncomeTotal = createSelector(
   (transactions) =>
     transactions.reduce((accTotal, transaction) => {
       if (transaction.type === 'income') {
-        console.log(transaction);
         return accTotal + transaction.amount;
       }
       return accTotal;

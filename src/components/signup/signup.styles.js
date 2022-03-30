@@ -11,7 +11,7 @@ export const Container = styled.div`
   background-color: #f4f4f3;
 `;
 
-// export const LoginContainer = styled.div``;
+// export const SignupContainer = styled.div``;
 
 // export const Backdrop = styled.div`
 //   background: rgba(0, 0, 0, 0.25);
@@ -19,7 +19,7 @@ export const Container = styled.div`
 //   min-height: 100vh;
 // `;
 
-export const LoginContainer = styled.div`
+export const SignupContainer = styled.div`
   width: 400px;
   min-width: 300px;
   background-color: #f4f4f3;
@@ -92,20 +92,5 @@ export const Button = styled.button`
   &:focus {
     background-color: #000;
     transform: translateY(-1px);
-  }
-`;
-
-export const SingupButton = styled(Link)`
-  text-decoration: none;
-  color: #303234;
-  text-align: center;
-  font-size: 1rem;
-  display: block;
-  margin-top: 30px;
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-    font-weight: 500;
   }
 `;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signInStart } from '../../redux/user/user.actions';
+import { signUpStart } from '../../redux/user/user.actions';
 import {
   Button,
   Container,
@@ -8,24 +8,23 @@ import {
   Heading,
   Input,
   Label,
-  LoginContainer,
-  SingupButton,
-} from './login.styles';
+  SignupContainer,
+} from './signup.styles';
 
-const Login = () => {
+const Signup = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({ email: '', password: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!user.email || !user.password) return;
-    dispatch(signInStart(user));
+    dispatch(signUpStart(user));
   };
 
   return (
     <Container>
-      <LoginContainer>
-        <Heading>Login</Heading>
+      <SignupContainer>
+        <Heading>Sign up</Heading>
         <Form>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -45,12 +44,11 @@ const Login = () => {
             id="password"
             onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
-          <Button onClick={handleSubmit}>Sign in</Button>
+          <Button onClick={handleSubmit}>Sign up</Button>
         </Form>
-        <SingupButton to="/signup">Create new account</SingupButton>
-      </LoginContainer>
+      </SignupContainer>
     </Container>
   );
 };
 
-export default Login;
+export default Signup;

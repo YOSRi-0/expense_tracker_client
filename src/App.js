@@ -12,6 +12,8 @@ import { useSelector } from 'react-redux';
 import { selectCurrentUser } from './redux/user/user.selectors';
 
 import Login from './components/login/login.component';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Signup from './components/signup/signup.component';
 
 const App = () => {
   const currentUser = useSelector(selectCurrentUser);
@@ -19,16 +21,34 @@ const App = () => {
   return (
     <>
       <Header />
-      {currentUser ? (
-        <>
-          <PushToTalkButtonContainer>
-            <PushToTalkButton />
-          </PushToTalkButtonContainer>
-          <TrackerPage />
-        </>
-      ) : (
-        <Login />
-      )}
+      <Routes>
+        <Route
+          exact
+          path="/"
+          element={
+            currentUser ? (
+              <div>
+                <PushToTalkButtonContainer>
+                  <PushToTalkButton />
+                </PushToTalkButtonContainer>
+                <TrackerPage />
+              </div>
+            ) : (
+              <Navigate replace to="/login" />
+            )
+          }
+        />
+        <Route
+          exact
+          path="/login"
+          element={currentUser ? <Navigate replace to="/" /> : <Login />}
+        />
+        <Route
+          exact
+          path="/signup"
+          element={currentUser ? <Navigate replace to="/" /> : <Signup />}
+        />
+      </Routes>
     </>
   );
 };
