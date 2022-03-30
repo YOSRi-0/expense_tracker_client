@@ -16,19 +16,27 @@ export const selectTransactionsPreview = createSelector(
 export const selectIncomeTotal = createSelector(
   [selectTransactionsData],
   (transactions) =>
-    transactions.reduce(
-      (accTotal, transaction) =>
-        transaction.type === 'income' && accTotal + transaction.amount,
-      0
-    )
+    transactions.reduce((accTotal, transaction) => {
+      if (transaction.type === 'income') {
+        console.log(transaction);
+        return accTotal + transaction.amount;
+      }
+      return accTotal;
+    }, 0)
 );
 
 export const selectExpenseTotal = createSelector(
-  [selectTransactions],
+  [selectTransactionsData],
   (transactions) =>
-    transactions.reduce(
-      (accTotal, transaction) =>
-        transaction.type === 'expense' && accTotal + transaction.amount,
-      0
-    )
+    transactions.reduce((accTotal, transaction) => {
+      if (transaction.type === 'expense') {
+        return accTotal + transaction.amount;
+      }
+      return accTotal;
+    }, 0)
+);
+
+export const selectBalance = createSelector(
+  [selectExpenseTotal, selectIncomeTotal],
+  (expenseTotal, incomeTotal) => incomeTotal - expenseTotal
 );

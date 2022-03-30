@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactionStart } from '../../redux/transaction/transaction.actions';
 import {
+  selectBalance,
   selectExpenseTotal,
   selectIncomeTotal,
   selectTransactionsData,
@@ -37,6 +38,7 @@ const Transactions = () => {
   const transactions = useSelector(selectTransactionsPreview);
   const incomeTotal = useSelector(selectIncomeTotal);
   const expenseTotal = useSelector(selectExpenseTotal);
+  const balance = useSelector(selectBalance);
 
   useEffect(() => {
     dispatch(fetchTransactionStart(currentUser));
@@ -47,16 +49,16 @@ const Transactions = () => {
       <Title>Total Balance</Title>
       <TotalContainer>
         <Currency>$</Currency>
-        <Total>32.500</Total>
+        <Total>{balance}</Total>
       </TotalContainer>
       <Types>
         <Type>
           <TypeLabel>Income</TypeLabel>
-          <TypeTotal color="#00B365">$${incomeTotal}</TypeTotal>
+          <TypeTotal color="#00B365">${incomeTotal}</TypeTotal>
         </Type>
         <Type>
           <TypeLabel>Expense</TypeLabel>
-          <TypeTotal color="#A14D4D">$${expenseTotal}</TypeTotal>
+          <TypeTotal color="#A14D4D">${expenseTotal}</TypeTotal>
         </Type>
       </Types>
       <LastTransactions>
