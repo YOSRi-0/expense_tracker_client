@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import './App.css';
 import Header from './components/header/header.component';
@@ -14,22 +14,26 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 
 import { useDispatch } from 'react-redux';
 import { setCurrentUser, signInStart } from './redux/user/user.actions';
+import Login from './components/login/login.component';
 
 const userMock = { email: 'yosri@gmail.com', password: 'yo' };
 const App = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
 
-  useEffect(() => {
-    dispatch(signInStart(userMock));
-  }, [dispatch]);
   return (
     <>
       <Header />
-      <PushToTalkButtonContainer>
-        <PushToTalkButton />
-      </PushToTalkButtonContainer>
-      <TrackerPage />
+      {currentUser ? (
+        <>
+          <PushToTalkButtonContainer>
+            <PushToTalkButton />
+          </PushToTalkButtonContainer>
+          <TrackerPage />
+        </>
+      ) : (
+        <Login />
+      )}
     </>
   );
 };

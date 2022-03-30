@@ -1,29 +1,37 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import {
   HeaderContainer,
   InfoText,
   LoginButton,
+  LogoutButton,
   ProfileContainer,
   ProfileName,
   ProfilePicture,
   WelcomeMsg,
 } from './header.styles';
+import { signOutStart } from '../../redux/user/user.actions';
 
 const Header = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
 
   return (
     <HeaderContainer>
       {currentUser ? (
-        <ProfileContainer>
-          <ProfilePicture />
-          <InfoText>
-            <WelcomeMsg>Welcome Back,</WelcomeMsg>
-            <ProfileName>Yosri</ProfileName>
-          </InfoText>
-        </ProfileContainer>
+        <>
+          <LogoutButton onClick={() => dispatch(signOutStart())}>
+            Logout
+          </LogoutButton>
+          <ProfileContainer>
+            <ProfilePicture alt="profil picture" />
+            <InfoText>
+              <WelcomeMsg>Welcome Back,</WelcomeMsg>
+              <ProfileName>Yosri</ProfileName>
+            </InfoText>
+          </ProfileContainer>
+        </>
       ) : (
         <LoginButton to="/login">Login</LoginButton>
       )}

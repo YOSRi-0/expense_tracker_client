@@ -5,7 +5,6 @@ import {
   selectBalance,
   selectExpenseTotal,
   selectIncomeTotal,
-  selectTransactionsData,
   selectTransactionsPreview,
 } from '../../redux/transaction/transaction.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';

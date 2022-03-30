@@ -14,12 +14,20 @@ export const HeaderContainer = styled.div`
   height: 70px;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
 `;
 
-export const LoginButton = styled.a`
+export const LogoutButton = styled.button`
+  ${textStyles}
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+export const LoginButton = styled(Link)`
   ${textStyles}
   text-decoration: none;
   cursor: pointer;
@@ -31,11 +39,11 @@ export const ProfileContainer = styled.div`
 
 export const ProfilePicture = styled.img`
   background-size: cover;
+  background: #fff;
   width: 44px;
   height: 44px;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid black;
 `;
 
 export const InfoText = styled.div`
