@@ -43,7 +43,7 @@ export const AddFormContainer = styled.div`
   border-radius: 50px;
   width: 100%;
   min-height: 100%;
-  padding: 26px 60px;
+  padding: 26px 42px;
   overflow: auto;
 
   @media (max-width: 680px) {
