@@ -21,9 +21,6 @@ const Header = () => {
     <HeaderContainer>
       {currentUser ? (
         <>
-          <LogoutButton onClick={() => dispatch(signOutStart())}>
-            Logout
-          </LogoutButton>
           <ProfileContainer>
             <ProfilePicture alt="profil picture" />
             <InfoText>
@@ -31,6 +28,9 @@ const Header = () => {
               <ProfileName>Yosri</ProfileName>
             </InfoText>
           </ProfileContainer>
+          <LogoutButton onClick={() => dispatch(signOutStart())}>
+            Logout
+          </LogoutButton>
         </>
       ) : (
         <LoginButton to="/login">Login</LoginButton>

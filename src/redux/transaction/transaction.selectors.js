@@ -13,6 +13,16 @@ export const selectTransactionsPreview = createSelector(
   (transactions) => transactions.filter((t, idx) => idx < 4)
 );
 
+export const selectIncomeData = createSelector(
+  [selectTransactionsData],
+  (transactions) => transactions.filter((t) => t.type === 'income')
+);
+
+export const selectExpenseData = createSelector(
+  [selectTransactionsData],
+  (transactions) => transactions.filter((t) => t.type === 'expense')
+);
+
 export const selectIncomeTotal = createSelector(
   [selectTransactionsData],
   (transactions) =>

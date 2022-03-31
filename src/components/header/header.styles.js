@@ -16,7 +16,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 18px;
 `;
 
 export const LogoutButton = styled.button`
