@@ -45,6 +45,10 @@ export const AddFormContainer = styled.div`
   min-height: 100%;
   padding: 26px 60px;
   overflow: auto;
+
+  @media (max-width: 680px) {
+    padding: 26px 35px;
+  }
 `;
 
 export const VoiceInput = styled.div`

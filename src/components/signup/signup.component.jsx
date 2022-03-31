@@ -9,6 +9,7 @@ import {
   Input,
   Label,
   SignupContainer,
+  SinginButton,
 } from './signup.styles';
 
 const Signup = () => {
@@ -46,6 +47,7 @@ const Signup = () => {
           />
           <Button onClick={handleSubmit}>Sign up</Button>
         </Form>
+        <SinginButton to="/login">Sign in</SinginButton>
       </SignupContainer>
     </Container>
   );

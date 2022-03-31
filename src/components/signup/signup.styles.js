@@ -94,3 +94,18 @@ export const Button = styled.button`
     transform: translateY(-1px);
   }
 `;
+
+export const SinginButton = styled(Link)`
+  text-decoration: none;
+  color: #303234;
+  text-align: center;
+  font-size: 1rem;
+  display: block;
+  margin-top: 30px;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    font-weight: 500;
+  }
+`;

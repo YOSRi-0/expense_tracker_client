@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatsContainer } from './stats.styles';
+import { ChartContainer, StatsContainer, Title } from './stats.styles';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { useSelector } from 'react-redux';
@@ -14,39 +14,64 @@ const Stats = () => {
   const incomeData = useSelector(selectIncomeData);
   const expenseData = useSelector(selectExpenseData);
 
-  const options = { maintainAspectRatio: true };
   const expenseCategories = expenseData.map((e) => e.name);
   const expenseAmountPerCategory = expenseData.map((e) => e.amount);
-  const data = {
+  const incomeCategories = incomeData.map((e) => e.name);
+  const incomeAmountPerCategory = incomeData.map((e) => e.amount);
+  const dataE = {
     labels: [...expenseCategories],
     datasets: [
       {
-        label: '# of Votes',
+        label: '# of Expenses',
         data: [...expenseAmountPerCategory],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
+          'hsl(0 52% 70%)',
+          'hsl(0 52% 65%)',
+          'hsl(0 52% 60%)',
+          'hsl(0 52% 55%)',
+          'hsl(0 52% 50%)',
+          'hsl(0 52% 45%)',
+          'hsl(0 52% 40%)',
+          'hsl(0 52% 35%)',
+          'hsl(0 52% 30%)',
+          'hsl(0 52% 25%)',
+          'hsl(0 52% 20%)',
         ],
-        // borderColor: [
-        //   'rgba(255, 99, 132, 1)',
-        //   'rgba(54, 162, 235, 1)',
-        //   'rgba(255, 206, 86, 1)',
-        //   'rgba(75, 192, 192, 1)',
-        //   'rgba(153, 102, 255, 1)',
-        //   'rgba(255, 159, 64, 1)',
-        // ],
-        // borderWidth: 1,
+        borderWidth: 0.5,
+      },
+    ],
+  };
+  const dataI = {
+    labels: [...incomeCategories],
+    datasets: [
+      {
+        label: '# of Income',
+        data: [...incomeAmountPerCategory],
+        backgroundColor: [
+          'hsl(139 53% 30%)',
+          'hsl(139 53% 35%)',
+          'hsl(139 53% 40%)',
+          'hsl(139 53% 45%)',
+          'hsl(139 53% 50%)',
+          'hsl(139 53% 55%)',
+          'hsl(139 53% 60%)',
+          'hsl(139 53% 65%)',
+          'hsl(139 53% 70%)',
+        ],
+        borderWidth: 0.5,
       },
     ],
   };
   return (
     <StatsContainer>
-      <Doughnut data={data} options={options} />
-      <Doughnut data={data} options={options} />
+      <Title>Income</Title>
+      <ChartContainer>
+        <Doughnut data={dataI} options={{ maintainAspectRatio: false }} />
+      </ChartContainer>
+      <Title style={{ marginTop: '20px' }}>Expenses</Title>
+      <ChartContainer>
+        <Doughnut data={dataE} options={{ maintainAspectRatio: false }} />
+      </ChartContainer>
     </StatsContainer>
   );
 };

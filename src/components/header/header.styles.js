@@ -16,7 +16,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 18px;
+  ${'' /* margin-bottom: 18px; */}
 `;
 
 export const LogoutButton = styled.button`
@@ -25,6 +25,7 @@ export const LogoutButton = styled.button`
   outline: none;
   background-color: transparent;
   cursor: pointer;
+  padding-right: 10px;
 `;
 
 export const LoginButton = styled(Link)`
@@ -50,7 +51,8 @@ export const InfoText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 10px;
+  ${'' /* margin-left: 10px; */}
+  padding-left: 10px;
 `;
 
 export const WelcomeMsg = styled.span`

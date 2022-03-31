@@ -22,7 +22,7 @@ const Header = () => {
       {currentUser ? (
         <>
           <ProfileContainer>
-            <ProfilePicture alt="profil picture" />
+            {/* <ProfilePicture alt="profil picture" /> */}
             <InfoText>
               <WelcomeMsg>Welcome Back,</WelcomeMsg>
               <ProfileName>Yosri</ProfileName>

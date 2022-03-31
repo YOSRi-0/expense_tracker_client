@@ -20,17 +20,14 @@ import {
 } from '../../constants/categories';
 import { useSpeechContext } from '@speechly/react-client';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addTransactionStart,
-  fetchTransactionStart,
-} from '../../redux/transaction/transaction.actions';
+import { addTransactionStart } from '../../redux/transaction/transaction.actions';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
 const initialState = {
   amount: '',
   category: '',
   type: '',
-  date: formatDate(new Date()),
+  date: null,
 };
 
 const Form = () => {

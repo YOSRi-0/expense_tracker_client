@@ -59,6 +59,7 @@ export const TypeLabel = styled.h3`
   font-size: 1rem;
   font-weight: 300;
   color: #303234;
+  margin-bottom: 5px;
 `;
 
 export const TypeTotal = styled.span`
@@ -72,8 +73,12 @@ export const LastTransactions = styled.div`
   border-radius: 50px;
   width: 100%;
   min-height: 100%;
-  padding: 26px 38px;
+  padding: 26px 60px;
   overflow: auto;
+
+  @media (max-width: 680px) {
+    padding: 26px 35px;
+  }
 `;
 
 export const LastTransactionsHeader = styled.div`
