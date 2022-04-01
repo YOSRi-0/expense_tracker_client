@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AddTransaction from '../../../components/add-transaction/add-transaction.component';
+import AllTransactions from '../../../components/all-transactions/all-transactions.component';
 import Stats from '../../../components/stats/stats.component';
 import Transactions from '../../../components/transactions/transactions.component';
 import { TrackerPageContainer } from './tracker-page.styles';
 
 const TrackerPage = () => {
+  const [showTransactions, setShowTransactions] = useState(false);
   return (
     <TrackerPageContainer>
-      <Transactions />
+      <Transactions
+        setShowTransactions={setShowTransactions}
+        showTransactions={showTransactions}
+      />
       <AddTransaction />
       <Stats />
+      {/* {showTransactions ? <AllTransactions /> : null} */}
+      {showTransactions ? (
+        <AllTransactions
+          showTransactions={showTransactions}
+          setShowTransactions={setShowTransactions}
+        />
+      ) : null}
     </TrackerPageContainer>
   );
 };

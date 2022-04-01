@@ -27,7 +27,7 @@ const initialState = {
   amount: '',
   category: '',
   type: '',
-  date: null,
+  date: '',
 };
 
 const Form = () => {

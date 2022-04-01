@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTransactionStart } from '../../redux/transaction/transaction.actions';
 import {
@@ -31,7 +31,7 @@ import {
   TypeTotal,
 } from './transactions.styles';
 
-const Transactions = () => {
+const Transactions = ({ setShowTransactions, showTransactions }) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const transactions = useSelector(selectTransactionsPreview);
@@ -63,7 +63,12 @@ const Transactions = () => {
       <LastTransactions>
         <LastTransactionsHeader>
           <HeaderText>Last Transactions</HeaderText>
-          <HeaderText>See all</HeaderText>
+          <HeaderText
+            style={{ cursor: 'pointer' }}
+            onClick={() => setShowTransactions(!showTransactions)}
+          >
+            See all
+          </HeaderText>
         </LastTransactionsHeader>
         {transactions.map((transaction) => {
           return (
