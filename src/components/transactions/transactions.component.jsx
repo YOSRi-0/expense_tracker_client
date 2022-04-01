@@ -29,7 +29,13 @@ import {
   TypeLabel,
   Types,
   TypeTotal,
+  IconsContainer,
+  DeleteIconContainer,
+  EditIconContainer,
+  Right,
 } from './transactions.styles';
+import { ReactComponent as EditIcon } from '../../assets/edit-icon.svg';
+import { ReactComponent as DeleteIcon } from '../../assets/delete-icon.svg';
 
 const Transactions = ({ setShowTransactions, showTransactions }) => {
   const dispatch = useDispatch();
@@ -82,10 +88,20 @@ const Transactions = ({ setShowTransactions, showTransactions }) => {
                   </TransactionDate>
                 </TransactionInfo>
               </Left>
-              <TransactionAmount type={transaction.type}>
-                {transaction.type === 'expense' ? '- ' : '+ '}
-                {transaction.amount}
-              </TransactionAmount>
+              <Right>
+                <TransactionAmount type={transaction.type}>
+                  {transaction.type === 'expense' ? '- ' : '+ '}
+                  {transaction.amount}
+                </TransactionAmount>
+                <IconsContainer>
+                  <DeleteIconContainer>
+                    <DeleteIcon />
+                  </DeleteIconContainer>
+                  <EditIconContainer>
+                    <EditIcon />
+                  </EditIconContainer>
+                </IconsContainer>
+              </Right>
             </Transaction>
           );
         })}

@@ -15,6 +15,9 @@ export const Modal = styled.div`
   left: 0;
   border-radius: 0;
   background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Backdrop = styled.div`
@@ -33,19 +36,16 @@ export const Container = styled.div`
   border: 1px solid white;
   border-radius: 50px;
   background-color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   z-index: 102;
-  overflow: auto;
+  overflow: hidden;
 `;
 export const Title = styled.h2`
   font-size: 1.25rem;
   font-weight: 400;
   color: #303234;
   text-align: center;
-  margin-bottom: 24px;
+  margin: 24px auto;
 `;
 
 export const TransactionsContainer = styled.div`
@@ -55,6 +55,7 @@ export const TransactionsContainer = styled.div`
   min-height: 100%;
   padding: 26px 42px;
   overflow: auto;
+  max-height: 800px;
 
   @media (max-width: 680px) {
     padding: 26px 35px;
@@ -65,6 +66,7 @@ export const Transaction = styled.div`
   ${FlexSpaceBetween}
   align-items: flex-start;
   margin-bottom: 30px;
+  height: 50px;
 
   &:last-of-type {
     margin-bottom: 0px;
@@ -110,5 +112,56 @@ export const TransactionAmount = styled.span`
   &:before {
     content: ${({ type }) => (type === 'expense' ? '- ' : '+ ')};
     color: ${({ type }) => (type === 'expense' ? '#A14D4D' : '#4DA167')};
+  }
+`;
+
+export const Right = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
+  min-height: 100%;
+`;
+
+export const IconsContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const DeleteIconContainer = styled.div`
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover,
+  &:focus {
+    & path {
+      fill: #000000c7;
+    }
+  }
+
+  & path {
+    fill: #0000007d;
+  }
+`;
+
+export const EditIconContainer = styled.div`
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover,
+  &:focus {
+    & path {
+      fill: #000000c7;
+    }
+  }
+
+  & path {
+    fill: #0000007d;
   }
 `;

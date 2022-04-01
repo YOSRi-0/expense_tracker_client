@@ -97,6 +97,7 @@ export const Transaction = styled.div`
   ${FlexSpaceBetween}
   align-items: flex-start;
   margin-bottom: 30px;
+  height: 50px;
 
   &:last-of-type {
     margin-bottom: 0px;
@@ -142,5 +143,56 @@ export const TransactionAmount = styled.span`
   &:before {
     content: ${({ type }) => (type === 'expense' ? '- ' : '+ ')};
     color: ${({ type }) => (type === 'expense' ? '#A14D4D' : '#4DA167')};
+  }
+`;
+
+export const Right = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: column;
+  min-height: 100%;
+`;
+
+export const IconsContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const DeleteIconContainer = styled.div`
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover,
+  &:focus {
+    & path {
+      fill: #ffffff;
+    }
+  }
+
+  & path {
+    fill: #ffffff71;
+  }
+`;
+
+export const EditIconContainer = styled.div`
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  position: relative;
+
+  &:hover,
+  &:focus {
+    & path {
+      fill: #ffffff;
+    }
+  }
+
+  & path {
+    fill: #ffffff7d;
   }
 `;
