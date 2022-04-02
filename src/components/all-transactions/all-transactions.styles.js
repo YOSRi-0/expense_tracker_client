@@ -9,8 +9,8 @@ const FlexSpaceBetween = css`
 export const Modal = styled.div`
   position: fixed;
   z-index: 100;
-  min-width: 100%;
-  min-height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
   top: 0;
   left: 0;
   border-radius: 0;
@@ -18,6 +18,7 @@ export const Modal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
 `;
 
 export const Backdrop = styled.div`
@@ -32,13 +33,13 @@ export const Backdrop = styled.div`
 
 export const Container = styled.div`
   width: 500px;
-  max-height: 800px;
+  max-height: 700px;
   border: 1px solid white;
   border-radius: 50px;
   background-color: #fff;
   position: relative;
   z-index: 102;
-  overflow: hidden;
+  ${'' /* overflow: hidden; */}
 
   @media (max-width: 600px) {
     width: 320px;
@@ -56,10 +57,10 @@ export const TransactionsContainer = styled.div`
   background-color: #fff;
   border-radius: 50px;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   padding: 26px 42px;
-  overflow: auto;
-  max-height: 800px;
+  overflow-y: scroll;
+  max-height: 70vh;
 
   @media (max-width: 680px) {
     padding: 26px 35px;
