@@ -12,7 +12,6 @@ import {
   createTheme,
 } from '@material-ui/core';
 import useStyles from './form.styles';
-import formatDate from '../../utils/formatDate';
 import CustomSnackbar from '../snackbar/snackbar.component';
 import {
   expenseCategories,

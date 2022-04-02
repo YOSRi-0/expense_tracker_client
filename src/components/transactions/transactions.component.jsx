@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTransactionStart } from '../../redux/transaction/transaction.actions';
+import {
+  deleteTransactionStart,
+  fetchTransactionStart,
+} from '../../redux/transaction/transaction.actions';
 import {
   selectBalance,
   selectExpenseTotal,
@@ -94,12 +97,18 @@ const Transactions = ({ setShowTransactions, showTransactions }) => {
                   {transaction.amount}
                 </TransactionAmount>
                 <IconsContainer>
-                  <DeleteIconContainer>
+                  <DeleteIconContainer
+                    onClick={() =>
+                      dispatch(
+                        deleteTransactionStart(transaction._id, currentUser)
+                      )
+                    }
+                  >
                     <DeleteIcon />
                   </DeleteIconContainer>
-                  <EditIconContainer>
+                  {/* <EditIconContainer>
                     <EditIcon />
-                  </EditIconContainer>
+                  </EditIconContainer> */}
                 </IconsContainer>
               </Right>
             </Transaction>

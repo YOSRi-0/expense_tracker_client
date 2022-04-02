@@ -21,6 +21,14 @@ class TransactionService {
         return response.data;
       });
   }
+
+  deleteOne(transactionId, currentUser) {
+    return axios
+      .delete(API_URL + 'item/' + transactionId, {
+        headers: authHeader(currentUser),
+      })
+      .then((response) => response.data);
+  }
 }
 
 export default new TransactionService();

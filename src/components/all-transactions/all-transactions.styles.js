@@ -7,10 +7,10 @@ const FlexSpaceBetween = css`
 `;
 
 export const Modal = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 100;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
   top: 0;
   left: 0;
   border-radius: 0;
@@ -22,12 +22,12 @@ export const Modal = styled.div`
 
 export const Backdrop = styled.div`
   background-color: rgba(36, 36, 36, 0.5);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 101;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
 `;
 
 export const Container = styled.div`
@@ -39,6 +39,10 @@ export const Container = styled.div`
   position: relative;
   z-index: 102;
   overflow: hidden;
+
+  @media (max-width: 600px) {
+    width: 320px;
+  }
 `;
 export const Title = styled.h2`
   font-size: 1.25rem;

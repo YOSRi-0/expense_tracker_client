@@ -52,7 +52,7 @@ html {
 
   object-fit: cover;
   background-position: center;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
@@ -60,7 +60,6 @@ body {
   width: 100%;
   height: auto;
   margin: 0 auto;
-  overflow: hidden;
   font-family: 'Fredoka';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

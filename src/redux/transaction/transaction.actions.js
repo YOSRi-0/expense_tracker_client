@@ -29,3 +29,18 @@ export const fetchTransactionFailure = (errorMessage) => ({
   type: TransactionActionTypes.FETCH_TRANSACTIIONS_FAILURE,
   payload: errorMessage,
 });
+
+export const deleteTransactionStart = (transactionId, currentUser) => ({
+  type: TransactionActionTypes.DELETE_TRANSACTION_START,
+  payload: { transactionId, currentUser },
+});
+
+export const deleteTransactionSuccess = (transactionId) => ({
+  type: TransactionActionTypes.DELETE_TRANSACTION_SUCCESS,
+  payload: transactionId,
+});
+
+export const deleteTransactionFailure = (e) => ({
+  type: TransactionActionTypes.DELETE_TRANSACTION_FAILURE,
+  error: e,
+});

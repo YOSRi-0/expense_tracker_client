@@ -3,6 +3,8 @@ import transactionService from '../../services/transaction.service';
 import {
   addTransactionFailure,
   addTransactionSuccess,
+  deleteTransactionFailure,
+  deleteTransactionSuccess,
   fetchTransactionFailure,
   fetchTransactionSuccess,
 } from './transaction.actions';
@@ -44,6 +46,17 @@ export function* addTransaction({ payload: { transaction, currentUser } }) {
   }
 }
 
+export function* deleteTransaction({
+  payload: { transactionId, currentUser },
+}) {
+  try {
+    yield transactionService.deleteOne(transactionId, currentUser);
+    yield put(deleteTransactionSuccess(transactionId));
+  } catch (e) {
+    yield put(deleteTransactionFailure(e));
+  }
+}
+
 export function* onAddTransaction() {
   yield takeLatest(
     TransactionActionTypes.ADD_TRANSACTION_START,
@@ -51,6 +64,17 @@ export function* onAddTransaction() {
   );
 }
 
+export function* onDeleteTransaction() {
+  yield takeLatest(
+    TransactionActionTypes.DELETE_TRANSACTION_START,
+    deleteTransaction
+  );
+}
+
 export function* transactionSagas() {
-  yield all([call(onAddTransaction), call(fetchTransactionStart)]);
+  yield all([
+    call(onAddTransaction),
+    call(fetchTransactionStart),
+    call(onDeleteTransaction),
+  ]);
 }
