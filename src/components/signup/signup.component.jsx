@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signUpStart } from '../../redux/user/user.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpFailure, signUpStart } from '../../redux/user/user.actions';
+import { selectUserError } from '../../redux/user/user.selectors';
 import {
   Button,
   Container,
+  Error,
   Form,
   Heading,
   Input,
@@ -14,11 +16,21 @@ import {
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const [user, setUser] = useState({ email: '', password: '' });
+  const [user, setUser] = useState({ email: '', password: '', username: '' });
+  const errorMessage = useSelector(selectUserError);
+
+  if (errorMessage) {
+    setTimeout(() => {
+      dispatch(signUpFailure(null));
+    }, 3000);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!user.email || !user.password) return;
+    if (!user.username || !user.email || !user.password) {
+      dispatch(signUpFailure({ message: 'Please fill the form' }));
+      return;
+    }
     dispatch(signUpStart(user));
   };
 
@@ -27,6 +39,15 @@ const Signup = () => {
       <SignupContainer>
         <Heading>Sign up</Heading>
         <Form>
+          <Label htmlFor="username">Email</Label>
+          <Input
+            type="text"
+            value={user.username}
+            placeholder="Enter your username"
+            autoComplete="off"
+            id="username"
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
+          />
           <Label htmlFor="email">Email</Label>
           <Input
             type="email"
@@ -45,6 +66,7 @@ const Signup = () => {
             id="password"
             onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
+          {errorMessage && <Error>{errorMessage}</Error>}
           <Button onClick={handleSubmit}>Sign up</Button>
         </Form>
         <SinginButton to="/login">Sign in</SinginButton>

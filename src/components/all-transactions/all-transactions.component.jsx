@@ -74,9 +74,9 @@ const AllTransactions = ({ showTransactions, setShowTransactions }) => {
                   >
                     <DeleteIcon />
                   </DeleteIconContainer>
-                  <EditIconContainer>
+                  {/* <EditIconContainer>
                     <EditIcon />
-                  </EditIconContainer>
+                  </EditIconContainer> */}
                 </IconsContainer>
               </Right>
             </Transaction>

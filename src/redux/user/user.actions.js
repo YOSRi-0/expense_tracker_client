@@ -15,10 +15,18 @@ export const signUpSuccess = (user) => ({
   payload: user,
 });
 
-export const signUpFailure = (error) => ({
-  type: UserActionTypes.SIGN_IN_FAILURE,
-  payload: error,
-});
+export const signUpFailure = (error) => {
+  let e;
+  if (error?.response && error?.response?.data) {
+    e = error.response.data;
+  } else {
+    e = error;
+  }
+  return {
+    type: UserActionTypes.SIGN_UP_FAILURE,
+    payload: e,
+  };
+};
 
 export const signInStart = (emailAndPassword) => ({
   type: UserActionTypes.SIGN_IN_START,
@@ -30,10 +38,18 @@ export const signInSuccess = (user) => ({
   payload: user,
 });
 
-export const signInFailure = (error) => ({
-  type: UserActionTypes.SIGN_IN_FAILURE,
-  payload: error,
-});
+export const signInFailure = (error) => {
+  let e;
+  if (error?.response && error?.response?.data) {
+    e = error.response.data;
+  } else {
+    e = error;
+  }
+  return {
+    type: UserActionTypes.SIGN_IN_FAILURE,
+    payload: e,
+  };
+};
 
 export const signOutStart = () => ({
   type: UserActionTypes.SIGN_OUT_START,

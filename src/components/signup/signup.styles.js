@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   position: absolute;
@@ -108,4 +109,23 @@ export const SinginButton = styled(Link)`
     text-decoration: underline;
     font-weight: 500;
   }
+`;
+
+const FadeOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`;
+
+export const Error = styled.span`
+  font-size: 1rem;
+  color: #dc3545;
+  animation-name: ${FadeOut};
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-delay: 2s;
 `;

@@ -25,7 +25,7 @@ const Header = () => {
             {/* <ProfilePicture alt="profil picture" /> */}
             <InfoText>
               <WelcomeMsg>Welcome Back,</WelcomeMsg>
-              <ProfileName>Yosri</ProfileName>
+              <ProfileName>{currentUser.username}</ProfileName>
             </InfoText>
           </ProfileContainer>
           <LogoutButton onClick={() => dispatch(signOutStart())}>

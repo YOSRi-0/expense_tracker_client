@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signInStart } from '../../redux/user/user.actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInFailure, signInStart } from '../../redux/user/user.actions';
+import { selectUserError } from '../../redux/user/user.selectors';
 import {
   Button,
   Container,
+  Error,
   Form,
   Heading,
   Input,
@@ -15,10 +17,20 @@ import {
 const Login = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({ email: '', password: '' });
+  const errorMessage = useSelector(selectUserError);
+
+  if (errorMessage) {
+    setTimeout(() => {
+      dispatch(signInFailure({ error: null }));
+    }, 3000);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!user.email || !user.password) return;
+    if (!user.email || !user.password) {
+      dispatch(signInFailure({ message: 'Please fill the form' }));
+      return;
+    }
     dispatch(signInStart(user));
   };
 
@@ -45,6 +57,7 @@ const Login = () => {
             id="password"
             onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
+          {errorMessage && <Error>{errorMessage}</Error>}
           <Button onClick={handleSubmit}>Sign in</Button>
         </Form>
         <SingupButton to="/signup">Create new account</SingupButton>

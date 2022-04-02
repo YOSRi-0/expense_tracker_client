@@ -19,9 +19,9 @@ export function* signIn({ payload: { email, password } }) {
   }
 }
 
-export function* signUp({ payload: { email, password } }) {
+export function* signUp({ payload: { username, email, password } }) {
   try {
-    const user = yield authService.signUp(email, password);
+    const user = yield authService.signUp(username, email, password);
     yield put(signUpSuccess(user));
   } catch (e) {
     yield put(signUpFailure(e));
