@@ -11,6 +11,8 @@ export const Modal = styled.div`
   z-index: 100;
   min-width: 100vw;
   min-height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
   top: 0;
   left: 0;
   border-radius: 0;
@@ -22,7 +24,7 @@ export const Modal = styled.div`
 `;
 
 export const Backdrop = styled.div`
-  background-color: rgba(36, 36, 36, 0.5);
+  background-color: #24242480;
   position: fixed;
   top: 0;
   left: 0;
@@ -33,13 +35,16 @@ export const Backdrop = styled.div`
 
 export const Container = styled.div`
   width: 500px;
-  max-height: 700px;
+  max-height: 750px;
   border: 1px solid white;
   border-radius: 50px;
   background-color: #fff;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 102;
-  ${'' /* overflow: hidden; */}
+  overflow: hidden;
 
   @media (max-width: 600px) {
     width: 320px;

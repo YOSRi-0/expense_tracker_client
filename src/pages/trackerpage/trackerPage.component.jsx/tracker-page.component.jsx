@@ -18,6 +18,7 @@ const TrackerPage = () => {
       {/* {showTransactions ? <AllTransactions /> : null} */}
       {showTransactions ? (
         <AllTransactions
+          className="all-transactions"
           showTransactions={showTransactions}
           setShowTransactions={setShowTransactions}
         />

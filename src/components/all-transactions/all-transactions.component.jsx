@@ -27,7 +27,15 @@ const AllTransactions = ({ showTransactions, setShowTransactions }) => {
   const transactions = useSelector(selectTransactionsData);
 
   return (
-    <Modal>
+    <Modal
+      style={{
+        'min-width': '100vw',
+        'min-height': '100vh',
+        'max-width': '100vw',
+        'max-height': '100vh',
+        'background-color': 'transparent',
+      }}
+    >
       <Backdrop onClick={() => setShowTransactions(!showTransactions)} />
       <Container>
         <Title>Transactions</Title>
