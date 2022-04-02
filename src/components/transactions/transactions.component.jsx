@@ -36,6 +36,7 @@ import {
   DeleteIconContainer,
   EditIconContainer,
   Right,
+  NoItemsMessage,
 } from './transactions.styles';
 import { ReactComponent as EditIcon } from '../../assets/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/delete-icon.svg';
@@ -79,6 +80,9 @@ const Transactions = ({ setShowTransactions, showTransactions }) => {
             See all
           </HeaderText>
         </LastTransactionsHeader>
+        {!transactions.length && (
+          <NoItemsMessage>No Transaction</NoItemsMessage>
+        )}
         {transactions.map((transaction) => {
           return (
             <Transaction key={transaction._id}>

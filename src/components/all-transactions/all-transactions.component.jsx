@@ -1,6 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectTransactionsData } from '../../redux/transaction/transaction.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { deleteTransactionStart } from '../../redux/transaction/transaction.actions';
 import formatDate from '../../utils/formatDate';
 import {
   Backdrop,
@@ -10,6 +12,7 @@ import {
   IconsContainer,
   Left,
   Modal,
+  NoItemsMessage,
   Right,
   Title,
   Transaction,
@@ -24,7 +27,9 @@ import { ReactComponent as EditIcon } from '../../assets/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/delete-icon.svg';
 
 const AllTransactions = ({ showTransactions, setShowTransactions }) => {
+  const dispatch = useDispatch();
   const transactions = useSelector(selectTransactionsData);
+  const currentUser = useSelector(selectCurrentUser);
 
   return (
     <Modal
@@ -40,6 +45,9 @@ const AllTransactions = ({ showTransactions, setShowTransactions }) => {
       <Container>
         <Title>Transactions</Title>
         <TransactionsContainer>
+          {transactions.length === 0 && (
+            <NoItemsMessage>No Transactions</NoItemsMessage>
+          )}
           {transactions.map((transaction) => (
             <Transaction key={transaction._id}>
               <Left>
@@ -57,7 +65,13 @@ const AllTransactions = ({ showTransactions, setShowTransactions }) => {
                   {transaction.amount}
                 </TransactionAmount>
                 <IconsContainer>
-                  <DeleteIconContainer>
+                  <DeleteIconContainer
+                    onClick={() =>
+                      dispatch(
+                        deleteTransactionStart(transaction._id, currentUser)
+                      )
+                    }
+                  >
                     <DeleteIcon />
                   </DeleteIconContainer>
                   <EditIconContainer>

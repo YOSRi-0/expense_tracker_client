@@ -196,3 +196,10 @@ export const EditIconContainer = styled.div`
     fill: #ffffff7d;
   }
 `;
+
+export const NoItemsMessage = styled.div`
+  text-align: center;
+  display: block;
+  font-weight: 300;
+  color: #fff;
+`;
