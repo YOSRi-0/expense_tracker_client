@@ -4,11 +4,13 @@ import AllTransactions from '../../../components/all-transactions/all-transactio
 import Stats from '../../../components/stats/stats.component';
 import Transactions from '../../../components/transactions/transactions.component';
 import { TrackerPageContainer } from './tracker-page.styles';
+import Header from '../../../components/header/header.component';
 
 const TrackerPage = () => {
   const [showTransactions, setShowTransactions] = useState(false);
   return (
     <TrackerPageContainer>
+      <Header />
       <Transactions
         setShowTransactions={setShowTransactions}
         showTransactions={showTransactions}
