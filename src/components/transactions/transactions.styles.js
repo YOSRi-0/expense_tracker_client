@@ -114,7 +114,22 @@ export const TransactionIcon = styled.span`
   background-color: ${({ type }) =>
     type === 'expense' ? '#A14D4D' : '#4DA167'};
   border-radius: 50%;
+  border: 1px solid #fff;
   overflow: hidden;
+  position: relative;
+
+  &:after {
+    content: '$';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #fff;
+    text-decoration: ${({ type }) =>
+      type === 'expense' ? 'line-through' : ''};
+  }
 `;
 
 export const TransactionInfo = styled.div`

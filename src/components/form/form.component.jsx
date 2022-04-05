@@ -150,8 +150,9 @@ const Form = () => {
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <FormControl fullWidth required>
-              <InputLabel>Type</InputLabel>
+              <InputLabel htmlFor="type">Type</InputLabel>
               <Select
+                id="type"
                 value={formData.type}
                 onChange={(e) =>
                   setFormData({ ...formData, type: e.target.value })
@@ -164,8 +165,9 @@ const Form = () => {
           </Grid>
           <Grid item xs={6} className={classes.gridItem}>
             <FormControl fullWidth required>
-              <InputLabel>Category</InputLabel>
+              <InputLabel htmlFor="category">Category</InputLabel>
               <Select
+                id="category"
                 value={formData.category}
                 onChange={(e) =>
                   setFormData({ ...formData, category: e.target.value })
