@@ -49,3 +49,8 @@ export const selectBalance = createSelector(
   [selectExpenseTotal, selectIncomeTotal],
   (expenseTotal, incomeTotal) => incomeTotal - expenseTotal
 );
+
+export const selectIsTransactionsFetching = createSelector(
+  [selectTransactions],
+  (transactions) => transactions.isFetching
+);

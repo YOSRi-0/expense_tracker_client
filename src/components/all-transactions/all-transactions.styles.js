@@ -64,7 +64,7 @@ export const TransactionsContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 26px 42px;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 70vh;
 
   @media (max-width: 680px) {

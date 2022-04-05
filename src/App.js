@@ -2,7 +2,8 @@ import React from 'react';
 
 import './App.css';
 import Header from './components/header/header.component';
-import TrackerPage from './pages/trackerpage/trackerPage.component.jsx/tracker-page.component';
+// import TrackerPage from './pages/trackerpage/trackerPage.component.jsx/tracker-page.component';
+import TrackerPageContainer from './pages/trackerpage/trackerPage.component.jsx/tracker-page.container.jsx';
 
 import {
   PushToTalkButton,
@@ -31,7 +32,7 @@ const App = () => {
                 <PushToTalkButtonContainer>
                   <PushToTalkButton />
                 </PushToTalkButtonContainer>
-                <TrackerPage />
+                <TrackerPageContainer />
               </div>
             ) : (
               <Navigate replace to="/login" />
