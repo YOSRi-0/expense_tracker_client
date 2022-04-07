@@ -8,7 +8,7 @@ export default makeStyles(() => ({
     marginTop: '15px',
   },
   datepicker: {
-    '&::-webkit-calendar-picker-indicator': {
+    '& input::-webkit-calendar-picker-indicator': {
       filter: 'invert(1)',
     },
   },
