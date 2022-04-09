@@ -17,7 +17,6 @@ class TransactionService {
     return axios
       .get(API_URL + 'item', { headers: authHeader(currentUser) })
       .then((response) => {
-        console.log(response.data);
         return response.data;
       });
   }

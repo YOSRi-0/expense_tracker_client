@@ -46,6 +46,9 @@ const transactionReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         error: action.payload,
       };
+    case TransactionActionTypes.CLEAR_TRANSACTIONS:
+      return INITIAL_STATE;
+
     default:
       return state;
   }

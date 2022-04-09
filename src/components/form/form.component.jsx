@@ -60,11 +60,11 @@ const Form = () => {
           amount: Number(formData.amount),
           date: formData.date,
         },
-        currentUser
+        currentUser,
+        setOpen
       )
     );
     setFormData(initialState);
-    setOpen(true);
   };
 
   const selectedCategories =
@@ -80,7 +80,6 @@ const Form = () => {
     );
   };
   useEffect(() => {
-    console.log(segment);
     if (segment) {
       if (segment.intent.intent === 'add_expense') {
         setFormData({ ...formData, type: 'expense' });
@@ -91,7 +90,6 @@ const Form = () => {
         segment.intent.intent === 'create_transaction'
       ) {
         isValidForm() && createTransaction();
-        console.log('createe!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         return;
       } else if (
         segment.isFinal &&
@@ -126,7 +124,6 @@ const Form = () => {
         }
       });
 
-      console.log(isValidForm());
       segment.isFinal && isValidForm() && createTransaction();
     }
   }, [segment]);

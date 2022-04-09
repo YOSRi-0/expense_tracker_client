@@ -1,5 +1,6 @@
 import { put, takeLatest, all, call } from 'redux-saga/effects';
 import authService from '../../services/auth.service';
+import { clearTransactions } from '../transaction/transaction.actions';
 import {
   signInFailure,
   signInSuccess,
@@ -31,6 +32,7 @@ export function* signUp({ payload: { username, email, password } }) {
 export function* singOut() {
   try {
     yield put(signOutSuccess());
+    yield put(clearTransactions());
   } catch (e) {
     yield put(signOutFailure(e));
   }

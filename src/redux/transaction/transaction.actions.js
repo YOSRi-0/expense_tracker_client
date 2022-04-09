@@ -1,8 +1,8 @@
 import TransactionActionTypes from './transaction.types';
 
-export const addTransactionStart = (transaction, currentUser) => ({
+export const addTransactionStart = (transaction, currentUser, setOpen) => ({
   type: TransactionActionTypes.ADD_TRANSACTION_START,
-  payload: { transaction, currentUser },
+  payload: { transaction, currentUser, setOpen },
 });
 
 export const addTransactionSuccess = (transaction) => ({
@@ -43,4 +43,8 @@ export const deleteTransactionSuccess = (transactionId) => ({
 export const deleteTransactionFailure = (e) => ({
   type: TransactionActionTypes.DELETE_TRANSACTION_FAILURE,
   error: e,
+});
+
+export const clearTransactions = () => ({
+  type: TransactionActionTypes.CLEAR_TRANSACTIONS,
 });

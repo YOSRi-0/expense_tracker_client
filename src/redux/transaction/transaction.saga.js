@@ -33,7 +33,9 @@ export function* fetchTransactionStart() {
   );
 }
 // add new transaction
-export function* addTransaction({ payload: { transaction, currentUser } }) {
+export function* addTransaction({
+  payload: { transaction, currentUser, setOpen },
+}) {
   try {
     const newTransaction = yield transactionService.createOne(
       transaction,
@@ -41,6 +43,7 @@ export function* addTransaction({ payload: { transaction, currentUser } }) {
     );
     yield put(addTransactionSuccess(newTransaction));
     yield fetchTransactionsAsync({ payload: { currentUser } });
+    yield setOpen(true);
   } catch (e) {
     yield put(addTransactionFailure(e));
   }
