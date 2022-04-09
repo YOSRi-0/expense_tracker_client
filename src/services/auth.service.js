@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:5000/';
+const API_URL = 'https://budget-tracker-4123.herokuapp.com/';
 
 class AuthService {
   login(email, password) {
